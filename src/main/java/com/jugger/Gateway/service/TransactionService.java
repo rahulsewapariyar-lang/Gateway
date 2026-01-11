@@ -1,7 +1,6 @@
 package com.jugger.Gateway.service;
 
 import com.jugger.Gateway.dto.TransactionRequest;
-import com.jugger.Gateway.dto.ExchangeRateResponse;
 import com.jugger.Gateway.dto.TransactionResponse;
 import com.jugger.Gateway.exception.InvalidRequestException;
 import com.jugger.Gateway.model.TransactionEntity;
@@ -26,7 +25,7 @@ public class TransactionService {
     public Mono<TransactionResponse> createTransaction(TransactionRequest transactionRequest){
         validateRequest(transactionRequest);
 
-        return exchangeService.getRate(transactionRequest.getFromCurrency(),transactionRequest.getToCurrency())
+        return exchangeService.getExchangeRate(transactionRequest.getFromCurrency(),transactionRequest.getToCurrency())
                 .map(exchangeRate-> {
                     if (exchangeRate == null || exchangeRate.getExchangeRate() == null){
                         throw new InvalidRequestException("Invalid currency pair or invalid response from Finance Currency");
