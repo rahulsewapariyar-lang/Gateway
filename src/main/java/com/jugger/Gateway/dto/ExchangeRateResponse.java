@@ -16,5 +16,5 @@ public class ExchangeRateResponse {
     private String baseCurrency;
     private String targetCurrency;
     private Double exchangeRate;
-    private LocalDateTime timestamp;
+    private LocalDateTime localDateTime;
 }
